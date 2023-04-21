@@ -1,0 +1,23 @@
+[
+    {
+        "artist": "Fitz & The Tantrums",
+        "title": "Let Yourself Free",
+        "image": "/images/Let_Yourself_Free.jpg",
+        "genre": "Rock",
+        "release": "2022"
+    },
+    {
+        "artist": "Ed Sheeran",
+        "title": "Bad Habits",
+        "image": "/images/Bad_Habits.jpg",
+        "genre": "Pop",
+        "release": "2021"
+    },
+    {
+        "artist": "Tiesto",
+        "title": "Drive",
+        "image": "/images/Drive.jpg",
+        "genre": "Electronic",
+        "release": "2023"
+    }
+]
