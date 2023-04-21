@@ -24,12 +24,6 @@ db.once("open", async () => {
         }
       );
     }
-
-    for (let i = 0; i < albumSeeds.length; i++) {
-      const { _id, title, artist, image, genre, release } = await Album.create(
-        albumSeeds[i]
-      );
-    }
   } catch (err) {
     console.error(err);
     process.exit(1);
