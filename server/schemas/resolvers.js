@@ -1,6 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Thought, Album } = require("../models");
-const { signToken } = require("../../../groove-critic/server/utils/auth");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
