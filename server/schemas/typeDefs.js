@@ -12,11 +12,12 @@ const typeDefs = gql`
 
   type Album {
     _id: ID
-    artist: String!
     title: String!
+    artist: String!
     image: String
     genre: String
     release: String
+    comments: [Comment]
   }
 
   type Thought {
@@ -44,7 +45,7 @@ const typeDefs = gql`
     user(username: String!): User
     thoughts(username: String): [Thought]
     thought(thoughtId: ID!): Thought
-    albums(username: String!): [Album]
+    albums: [Album]!
     album(albumId: ID!): Album
     me: User
   }

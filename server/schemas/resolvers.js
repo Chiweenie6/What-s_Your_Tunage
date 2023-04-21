@@ -27,7 +27,7 @@ const resolvers = {
       return Album.find();
     },
     album: async (parent, { albumId }) => {
-      return Album.findOne(_id).populate("category")
+      return Album.findOne({_id: albumId});
     }
   },
 

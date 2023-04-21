@@ -63,8 +63,8 @@ export const QUERY_ALBUMS = gql`
   query getAlbums {
     albums {
       _id
-      artist
       title
+      artist
       image
       genre
       release
