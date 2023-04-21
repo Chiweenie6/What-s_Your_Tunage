@@ -11,12 +11,15 @@ const albumSchema = new Schema({
     required: true
   },
   image: {
-    type: String
+    type: Blob
   },
   genre: {
     type: String
   },
   release: {
+    type: String
+  },
+  description: {
     type: String
   },
   comments: [
