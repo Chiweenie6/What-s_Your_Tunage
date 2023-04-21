@@ -31,7 +31,27 @@ To allow a user to read information and reviews for albums. The user can leave t
   Copy files into VS Code and type "npm i" into command line. Then "npm run build". And lastly, type "npm run develop" in CL and the app will run in your browser.
 
 ## Contributing
-  n/a
+  Kevin Breedlove
+* GitHub Profile: https://github.com/Chiweenie6
+* Email: kbreedlo06@gmail.com
+
+Katie Speakman
+* GitHub Profile: https://github.com/krchandler27
+* Email: krchandler27@gmail.com
+
+Katherine Lantto
+* GitHub Profile: https://github.com/kthlnt
+* Email: 
+
+Angela Witham
+* GitHub Profile: https://github.com/elawilliam
+* Email: 
+
+Isaac McDaniel
+* GitHub Profile: https://github.com/NewCoderStudent39
+* Email:
+
+
 
 ## Tests
   n/a
