@@ -20,6 +20,16 @@ const typeDefs = gql`
     comments: [Comment]
   }
 
+  input AlbumInput {
+    _id: ID
+    title: String!
+    artist: String!
+    image: String
+    genre: String
+    release: String
+    comments: [Comment]
+  }
+
   type Thought {
     _id: ID
     thoughtText: String
@@ -58,6 +68,8 @@ const typeDefs = gql`
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
     updateComment(albumId: ID!, commentId: ID!): Album
+    saveAlbum (input: AlbumInput): User
+    removeAlbum(albumId: ID!): Album
   }
 `;
 
