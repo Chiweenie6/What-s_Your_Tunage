@@ -76,8 +76,8 @@ export const QUERY_SINGLE_ALBUM = gql`
   query getSingleAlbum($albumId: ID!) {
     album(albumId: $albumId) {
       _id
-      artist
       title
+      artist
       image
       genre
       release

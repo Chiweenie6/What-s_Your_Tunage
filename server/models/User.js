@@ -19,13 +19,21 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  savedAlbums: [bookSchema],
   thoughts: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Thought',
     },
   ],
-});
+},
+// set this to use virtual below
+{
+  toJSON: {
+    virtuals: true,
+  },
+}
+);
 
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
@@ -39,6 +47,10 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
+
+userSchema.virtual('gameCount').get(function () {
+  return this.savedGames.length;
+});
 
 const User = model('User', userSchema);
 

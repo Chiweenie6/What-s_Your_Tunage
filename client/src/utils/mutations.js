@@ -54,3 +54,14 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const SAVE_ALBUM = gql`
+mutation saveAlbum($input: AlbumInput) {
+  saveAlbum(input: $input) {
+    _id
+    username
+    email
+    gameCount
+  }
+}
+`

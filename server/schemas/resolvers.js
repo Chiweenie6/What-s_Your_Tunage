@@ -27,8 +27,8 @@ const resolvers = {
       return Album.find();
     },
     album: async (parent, { albumId }) => {
-      return Album.findOne({_id: albumId});
-    }
+      return Album.findOne({ _id: albumId });
+    },
   },
 
   Mutation: {
@@ -58,23 +58,23 @@ const resolvers = {
       if (context.user) {
         return User.findOneAndUpdate(
           { _id: context.user._id },
-          {$addToSet: { savedAlbums: input }},
+          { $addToSet: { savedAlbums: input } },
           { new: true, runValidators: true }
         );
       }
     },
-  // Delete Album from the User's profile
-  removeAlbum: async (parent, {albumId}, context) => {
+    // Delete Album from the User's profile
+    removeAlbum: async (parent, { albumId }, context) => {
       if (context.user) {
-          return User.findOneAndUpdate(
-              {_id: context.user._id},
-              {$pull: {savedAlbums: {albumId: albumId}}},
-              {new: true}
-          );
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedAlbums: { albumId: albumId } } },
+          { new: true }
+        );
       }
       //   Must be logged in in order to delete album from profile
       throw new AuthenticationError("🚫 Must Be Logged In To Delete Album 🚫");
-  },
+    },
     addThought: async (parent, { thoughtText }, context) => {
       if (context.user) {
         const thought = await Thought.create({
