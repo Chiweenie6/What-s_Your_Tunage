@@ -12,9 +12,13 @@ import Auth from "../utils/auth";
 const Profile = () => {
   const { username: userParam } = useParams();
 
+  console.log();
+
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   });
+
+  console.log(data);
 
   const user = data?.me || data?.user || {};
 
@@ -28,7 +32,7 @@ const Profile = () => {
   }
 
   if (!user?.username) {
-    return <h4>🚫 Must Be Logged In 🚫</h4>;
+    return <h4>🍃 Must Be Logged In 🚫</h4>;
   }
 
   return (
@@ -40,7 +44,7 @@ const Profile = () => {
 
         <div className="col-12 col-md-10 mb-5">
           <AlbumList
-            albums={user.albums}
+            albums={user.savedAlbums}
             title={`${user.username}'s albums...`}
             showTitle={false}
             showUsername={false}

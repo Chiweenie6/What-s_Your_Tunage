@@ -6,7 +6,8 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    albums: [Album]
+    albumCount: Int
+    savedAlbums: [Album]
   }
 
   type Album {
@@ -55,7 +56,7 @@ const typeDefs = gql`
     removeComment(albumId: ID!, commentId: ID!): Album
     updateComment(albumId: ID!, commentId: ID!): Album
     saveAlbum(input: AlbumInput): User
-    removeAlbum(albumId: ID!): Album
+    removeAlbum(albumId: ID!): User
   }
 `;
 

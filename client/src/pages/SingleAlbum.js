@@ -13,38 +13,30 @@ const SingleAlbum = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { albumId } = useParams();
 
-  
-
   const { loading, data } = useQuery(QUERY_SINGLE_ALBUM, {
     // pass URL parameter
     variables: { albumId: albumId },
   });
 
-  
-  console.log(data);
-  console.log(albumId);
-
   const album = data?.album || {};
-
-  console.log(album);
 
   if (loading) {
     return <div>🔃 Loading 🔃</div>;
   }
   return (
     <div className="my-3 text-center">
-        <div>
-            <img src={album.image} alt={album.title}></img>
-        </div>
+      <div>
+        <img src={album.image} alt={album.title}></img>
+      </div>
       <h3 className="card-header bg-dark text-light p-2 m-0">
         {album.title} <br />
       </h3>
       <div className="bg-light py-4">
-          <h4>{album.artist}</h4>
-          <br></br>
-          <h4>{album.genre}</h4>
-          <br></br>
-          <h4>{album.release}</h4>
+        <h4>{album.artist}</h4>
+        <br></br>
+        <h4>{album.genre}</h4>
+        <br></br>
+        <h4>{album.release}</h4>
       </div>
 
       <div className="my-5">
