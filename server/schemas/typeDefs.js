@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
@@ -7,27 +7,24 @@ const typeDefs = gql`
     email: String
     password: String
     albums: [Album]
-    comments: [Comment]
   }
 
   type Album {
     _id: ID
-    title: String!
-    artist: String!
+    title: String
+    artist: String
     image: String
     genre: String
     release: String
-    comments: [Comment]
   }
 
   input AlbumInput {
     _id: ID
-    title: String!
-    artist: String!
+    title: String
+    artist: String
     image: String
     genre: String
     release: String
-    comments: [Comment]
   }
 
   type Thought {
@@ -68,7 +65,7 @@ const typeDefs = gql`
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
     updateComment(albumId: ID!, commentId: ID!): Album
-    saveAlbum (input: AlbumInput): User
+    saveAlbum(input: AlbumInput): User
     removeAlbum(albumId: ID!): Album
   }
 `;

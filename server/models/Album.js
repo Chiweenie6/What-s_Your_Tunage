@@ -1,23 +1,23 @@
-const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+const { Schema, model } = require("mongoose");
+const dateFormat = require("../utils/dateFormat");
 
 const albumSchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   artist: {
     type: String,
-    required: true
+    required: true,
   },
   image: {
-    type: String
+    type: String,
   },
   genre: {
-    type: String
+    type: String,
   },
   release: {
-    type: String
+    type: String,
   },
   comments: [
     {
@@ -40,6 +40,6 @@ const albumSchema = new Schema({
   ],
 });
 
-const Album = model('Album', albumSchema);
+const Album = model("Album", albumSchema);
 
 module.exports = Album;

@@ -62,6 +62,8 @@ const resolvers = {
           { new: true, runValidators: true }
         );
       }
+      //   Must be logged in in order to save album to profile
+      throw new AuthenticationError("🚫 Must Be Logged In To Delete Album 🚫");
     },
     // Delete Album from the User's profile
     removeAlbum: async (parent, { albumId }, context) => {
