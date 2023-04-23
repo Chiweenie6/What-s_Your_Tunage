@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
+const albumSchema = require("./Album");
 
 const userSchema = new Schema(
   {
@@ -20,7 +21,12 @@ const userSchema = new Schema(
       required: true,
       minlength: 6,
     },
-    savedAlbums: [albumSchema],
+    savedAlbums: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Album",
+      },
+    ],
     thoughts: [
       {
         type: Schema.Types.ObjectId,
