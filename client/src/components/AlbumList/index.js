@@ -35,7 +35,6 @@ const AlbumList = ({ albums, title }) => {
                 <br></br>
                 <h5>{album.release}</h5>
                 <br></br>
-                <h5>{album.image}</h5>
               </div>
             </div>
           ))}
