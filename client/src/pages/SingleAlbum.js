@@ -26,7 +26,7 @@ const SingleAlbum = () => {
   return (
     <div className="my-3">
         <div>
-            <img src="{album.image}" alt="{album.title}"></img>
+            <img src={album.image} alt={album.title}></img>
         </div>
       <h3 className="card-header bg-dark text-light p-2 m-0">
         {album.title} <br />

@@ -27,12 +27,6 @@ const userSchema = new Schema(
         ref: "Album",
       },
     ],
-    thoughts: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Thought",
-      },
-    ],
   },
   // set this to use virtual below
   {
