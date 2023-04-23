@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 import AlbumList from "../components/AlbumList";
 
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
+import{ REMOVE_ALBUM } from "../utils/mutations";
 
 import Auth from "../utils/auth";
 

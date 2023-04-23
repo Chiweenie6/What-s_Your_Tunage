@@ -13,12 +13,20 @@ const SingleAlbum = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { albumId } = useParams();
 
+  
+
   const { loading, data } = useQuery(QUERY_SINGLE_ALBUM, {
     // pass URL parameter
     variables: { albumId: albumId },
   });
 
+  
+  console.log(data);
+  console.log(albumId);
+
   const album = data?.album || {};
+
+  console.log(album);
 
   if (loading) {
     return <div>🔃 Loading 🔃</div>;

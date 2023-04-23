@@ -16,6 +16,7 @@ const typeDefs = gql`
     image: String
     genre: String
     release: String
+    comments: [Comment]
   }
 
   input AlbumInput {
@@ -42,7 +43,7 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    albums: [Album]!
+    albums: [Album]
     album(albumId: ID!): Album
     me: User
   }
