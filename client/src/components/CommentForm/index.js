@@ -33,7 +33,7 @@ const CommentForm = ({ albumId }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'commentText' && value.length <= 280) {
+    if (name === 'commentText' && value.length <= 250) {
       setCommentText(value);
       setCharacterCount(value.length);
     }
@@ -47,10 +47,10 @@ const CommentForm = ({ albumId }) => {
         <>
           <p
             className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
+              characterCount === 250 || error ? 'text-danger' : ''
             }`}
           >
-            Character Count: {characterCount}/280
+            Character Count: {characterCount}/250
             {error && <span className="ml-2">{error.message}</span>}
           </p>
           <form
@@ -60,7 +60,7 @@ const CommentForm = ({ albumId }) => {
             <div className="col-12 col-lg-9">
               <textarea
                 name="commentText"
-                placeholder="Add your comment..."
+                placeholder="Your thoughts..."
                 value={commentText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
@@ -69,8 +69,8 @@ const CommentForm = ({ albumId }) => {
             </div>
 
             <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Comment
+              <button className="btn btn-info btn-block py-3" type="submit">
+                ✏️ Add Thought
               </button>
             </div>
           </form>
