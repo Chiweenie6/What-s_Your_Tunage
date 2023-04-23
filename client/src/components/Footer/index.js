@@ -16,7 +16,7 @@ const Footer = () => {
             🔙
           </button>
         )}
-        <h4>
+        <h4 className='pt-5'>
           {' '}
           <span
             className="emoji"
