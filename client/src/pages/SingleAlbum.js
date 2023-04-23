@@ -32,7 +32,7 @@ const SingleAlbum = () => {
     return <div>🔃 Loading 🔃</div>;
   }
   return (
-    <div className="my-3">
+    <div className="my-3 text-center">
         <div>
             <img src={album.image} alt={album.title}></img>
         </div>
@@ -40,7 +40,7 @@ const SingleAlbum = () => {
         {album.title} <br />
       </h3>
       <div className="bg-light py-4">
-          <h4>{album.author}</h4>
+          <h4>{album.artist}</h4>
           <br></br>
           <h4>{album.genre}</h4>
           <br></br>
