@@ -11,7 +11,7 @@ const Home = () => {
   const { loading, data } = useQuery(QUERY_THOUGHTS);
   const thoughts = data?.thoughts || [];
 
-  const {loadingAlbums, info} = useQuery(QUERY_ALBUMS);
+  const { loadingAlbums, info } = useQuery(QUERY_ALBUMS);
   const albums = info?.albums || [];
 
   return (
@@ -27,20 +27,14 @@ const Home = () => {
           {loading ? (
             <div>🔃 Loading 🔃</div>
           ) : (
-            <ThoughtList
-              thoughts={thoughts}
-              title="Some Food for Thought..."
-            />
+            <ThoughtList thoughts={thoughts} title="Some Food for Thought..." />
           )}
         </div>
         <div className="col-12 col-md-8 mb-3">
           {loadingAlbums ? (
             <div>🔃 Loading 🔃</div>
           ) : (
-            <AlbumList
-              albums={albums}
-              title="🎶 Let there be MUSIC! 🎶"
-            />
+            <AlbumList albums={albums} title="🎶 Let there be MUSIC! 🎶" />
           )}
         </div>
       </div>
