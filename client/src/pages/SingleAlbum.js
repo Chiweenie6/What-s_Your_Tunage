@@ -24,26 +24,49 @@ const SingleAlbum = () => {
     return <div>🔃 Loading 🔃</div>;
   }
   return (
-    <div className="my-3 text-center">
-      <div>
-        <img src={album.image} alt={album.title}></img>
-      </div>
-      <h3 className="card-header bg-dark text-light p-2 m-0">
-        {album.title} <br />
-      </h3>
-      <div className="bg-light py-4">
-        <h4>{album.artist}</h4>
-        <br></br>
-        <h4>{album.genre}</h4>
-        <br></br>
-        <h4>{album.release}</h4>
+    <div className="my-3 text-center container">
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div>
+          <div>
+            <img
+              src={require(`../images/${album.image}`)}
+              alt={`${album.image}`}
+              className="p-3"
+              style={{ width: "60%", height: "auto" }}
+            />
+          </div>
+          <h3 className="card-header bg-dark text-light p-2 m-0">
+            {album.title} <br />
+          </h3>
+          <div className="bg-light py-4">
+            <h4>{album.artist}</h4>
+            <br></br>
+            <h4>{album.genre}</h4>
+            <br></br>
+            <h4>{album.release}</h4>
+          </div>
+        </div>
       </div>
 
-      <div className="my-5">
-        <CommentList comments={album.comments} />
-      </div>
-      <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
-        <CommentForm albumId={album._id} />
+      <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+        <div className="col-12 offset-2">
+          <div className="my-5">
+            <CommentList comments={album.comments} />
+          </div>
+          <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
+            <CommentForm albumId={album._id} />
+          </div>
+        </div>
       </div>
     </div>
   );
