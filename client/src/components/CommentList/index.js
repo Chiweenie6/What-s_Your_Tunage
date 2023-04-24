@@ -18,13 +18,13 @@ const CommentList = ({ comments = [] }) => {
           comments.map((comment) => (
             <div key={comment._id} className="col-12 mb-3 pb-3">
               <div className="p-3 bg-dark text-light">
+              <p className="card-body">{comment.commentText}</p>
                 <h5 className="card-header">
-                  {comment.commentAuthor} commented{" "}
-                  <span style={{ fontSize: "0.825rem" }}>
+                  <span style={{ fontSize: "0.75rem" }}>By</span> {comment.commentAuthor}  {" "}
+                  <span style={{ fontSize: "0.75rem" }}>
                     on {comment.createdAt}
                   </span>
                 </h5>
-                <p className="card-body">{comment.commentText}</p>
                 <br />
                 <div className="text-right">
                   <button className="btn btn-sm btn-danger">

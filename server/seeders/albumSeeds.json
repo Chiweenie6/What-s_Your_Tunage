@@ -21,6 +21,13 @@
         "release": "2023"
     },
     {
+        "title": "Pure Heroine",
+        "artist": "Lorde",
+        "image": "Pure_Heroine.jpg",
+        "genre": "Electronica",
+        "release": "2013"
+    },
+    {
         "title": "Metro Area",
         "artist": "Metro Area",
         "image": "Metro_Area.jpg",
@@ -54,5 +61,82 @@
         "image": "Kiss_My_Super_Bowl_Ring.jpg",
         "genre": "Experimental Punk",
         "release": "2020"
+    },
+    {
+        "title": "With A Hammer",
+        "artist": "Yaeji",
+        "image": "With_A_Hammer.jpg",
+        "genre": "Electronic",
+        "release": "2023"
+    },
+    {
+        "title": "Rare",
+        "artist": "Selena Gomez",
+        "image": "Rare.png",
+        "genre": "Dance Pop",
+        "release": "2020"
+    },
+    {
+        "title": "Hopeless Fountain Kingdom",
+        "artist": "Halsey",
+        "image": "Hopeless_Fountain_Kingdom.png",
+        "genre": "Pop",
+        "release": "2017"
+    },
+    {
+        "title": "Neptune's Lair",
+        "artist": "Drexciya",
+        "image": "Neptunes_Lair.jpg",
+        "genre": "Electronic",
+        "release": "1999"
+    },
+    {
+        "title": "I Am",
+        "artist": "Earth, Wind & Fire",
+        "image": "I_Am.jpg",
+        "genre": "R&B",
+        "release": "1979"
+    },
+    {
+        "title": "Inca Taqui",
+        "artist": "Yma Sumac",
+        "image": "Inca_Taqui.jpg",
+        "genre": "Music of Peru",
+        "release": "1953"
+    },
+    {
+        "title": "Disco Inferno",
+        "artist": "The Trammps",
+        "image": "Disco_Inferno.jpg",
+        "genre": "Disco",
+        "release": "1976"
+    },
+    {
+        "title": "Kunststoff",
+        "artist": "Move D",
+        "image": "Kunststoff.jpg",
+        "genre": "Electronic",
+        "release": "2006"
+    },
+    {
+        "title": "Lifestyles of the Laptop Cafe",
+        "artist": "The Other People Place",
+        "image": "Lifestyles_of_the_Laptop_Cafe.jpg",
+        "genre": "Detroit Techno",
+        "release": "2001"
+    },
+    {
+        "title": "Dragon Tunes",
+        "artist": "Dragon Tales",
+        "image": "Dragon_Tunes.jpg",
+        "genre": "Childrens Music",
+        "release": "2002"
+    },
+    {
+        "title": "Growing Up",
+        "artist": "The Linda Lindas",
+        "image": "Growing_Up.jpg",
+        "genre": "Punk Rock",
+        "release": "2022"
     }
 ]

@@ -32,7 +32,7 @@ const SingleAlbum = () => {
           justifyContent: "center",
         }}
       >
-        <div>
+        <div style={{ width: "75%", height: "auto" }}>
           <div>
             <img
               src={require(`../images/${album.image}`)}
