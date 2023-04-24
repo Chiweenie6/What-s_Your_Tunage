@@ -1,23 +1,58 @@
 [
     {
-        "artist": "Fitz & The Tantrums",
         "title": "Let Yourself Free",
+        "artist": "Fitz & The Tantrums",
         "image": "Let_Yourself_Free.jpg",
         "genre": "Rock",
         "release": "2022"
     },
     {
-        "artist": "Ed Sheeran",
         "title": "Bad Habits",
+        "artist": "Ed Sheeran",
         "image": "Bad_Habits.jpg",
         "genre": "Pop",
         "release": "2021"
     },
     {
-        "artist": "Tiesto",
         "title": "Drive",
+        "artist": "Tiesto",
         "image": "Drive.jpg",
         "genre": "Electronic",
         "release": "2023"
+    },
+    {
+        "title": "Metro Area",
+        "artist": "Metro Area",
+        "image": "Metro_Area.jpg",
+        "genre": "Nu-Disco",
+        "release": "2002"
+    },
+    {
+        "title": "Computer World",
+        "artist": "Kraftwerk",
+        "image": "Computer_World.png",
+        "genre": "Electronic",
+        "release": "1981"
+    },
+    {
+        "title": "channel ORANGE",
+        "artist": "Frank Ocean",
+        "image": "channel_ORANGE.jpg",
+        "genre": "Alternative R&B",
+        "release": "2012"
+    },
+    {
+        "title": "Re:Dial",
+        "artist": "livetune",
+        "image": "Re_Dial.jpg",
+        "genre": "J-pop",
+        "release": "2013"
+    },
+    {
+        "title": "Kiss My Super Bowl Ring",
+        "artist": "The Garden",
+        "image": "Kiss_My_Super_Bowl_Ring.jpg",
+        "genre": "Experimental Punk",
+        "release": "2020"
     }
 ]
