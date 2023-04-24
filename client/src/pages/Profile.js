@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
-
+import CommentList from "../components/CommentList";
 import AlbumList from "../components/AlbumList";
 
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
@@ -42,6 +42,15 @@ const Profile = () => {
         <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
           Viewing {userParam ? `${user.username}'s` : "your"} profile.
         </h2>
+
+        <div className="col-12 col-md-10 mb-5">
+          <CommentList
+            comments={user.comments}
+            title={`${user.username}'s comments...`}
+            showTitle={false}
+            showUsername={false}
+          />
+        </div>
 
         <div className="col-12 col-md-10 mb-5">
           <AlbumList

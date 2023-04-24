@@ -11,6 +11,7 @@ import RatingSystem from "../../utils/ratingSystem";
 const CommentForm = ({ albumId }) => {
   const [commentText, setCommentText] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
+  const [rating, setRating] = useState(0);
 
   const [addComment, { error }] = useMutation(ADD_COMMENT);
 
@@ -23,9 +24,11 @@ const CommentForm = ({ albumId }) => {
           albumId,
           commentText,
           commentAuthor: Auth.getProfile().data.username,
+          rating
         },
       });
 
+      setRating(0);
       setCommentText("");
     } catch (err) {
       console.error(err);
@@ -38,6 +41,7 @@ const CommentForm = ({ albumId }) => {
     if (name === "commentText" && value.length <= 250) {
       setCommentText(value);
       setCharacterCount(value.length);
+      setRating(value);
     }
   };
 
