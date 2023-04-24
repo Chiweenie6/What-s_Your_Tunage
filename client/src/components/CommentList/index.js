@@ -1,33 +1,6 @@
 import React from "react";
-import { useMutation } from "@apollo/client";
 
-import { REMOVE_COMMENT } from "../../utils/mutations";
-import { QUERY_ME } from "../../utils/queries";
-
-const CommentList = ({ comments, isLoggedInUser = false }) => {
-  const [removeComment, { error }] = useMutation(REMOVE_COMMENT, {
-    update(cache, { data: { removeComment } }) {
-      try {
-        cache.writeQuery({
-          query: QUERY_ME,
-          data: { me: removeComment },
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    },
-  });
-
-  const handleRemoveComment = async (comment) => {
-    try {
-      const { data } = await removeComment({
-        variables: { comment },
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
+const CommentList = ({ comments = [] }) => {
   if (!comments.length) {
     return <h3>No Comments Yet</h3>;
   }
@@ -52,21 +25,16 @@ const CommentList = ({ comments, isLoggedInUser = false }) => {
                   </span>
                 </h5>
                 <p className="card-body">{comment.commentText}</p>
+                <br />
+                <div className="text-right">
+                  <button className="btn btn-sm btn-danger">
+                    🔥 Remove Comment
+                  </button>
+                </div>
               </div>
-              {isLoggedInUser && (
-                <button
-                  className="btn-danger"
-                  onClick={() => handleRemoveComment(comment)}
-                >
-                  🔥 Remove Album
-                </button>
-              )}
             </div>
           ))}
       </div>
-      {error && (
-        <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
-      )}
     </>
   );
 };

@@ -49,7 +49,9 @@ const Profile = () => {
             title={`${user.username}'s comments...`}
             showTitle={false}
             showUsername={false}
+            isLoggedInUser={!userParam && true}
           />
+          
         </div>
 
         <div className="col-12 col-md-10 mb-5">

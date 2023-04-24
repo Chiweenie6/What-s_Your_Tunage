@@ -21,7 +21,7 @@ const AlbumList = ({ albums, title }) => {
                     src={require(`../../images/${album.image}`)}
                     alt={`${album.image}`}
                     className="p-3"
-                    style={{ width: "100%", height: "auto" }}
+                    style={{ width: "60%", height: "auto" }}
                   />
                   </Link>
                 ) : null}
