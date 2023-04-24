@@ -1,0 +1,16 @@
+/* input[type="radio"] {
+    display: none;
+    opacity: 0;
+} */
+
+.rateMusic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.musicNote {
+    cursor: pointer;
+    transition: color 200ms
+}

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
 
-import { ADD_COMMENT } from '../../utils/mutations';
+import { ADD_COMMENT } from "../../utils/mutations";
 
-import Auth from '../../utils/auth';
+import Auth from "../../utils/auth";
+
+import RatingSystem from "../../utils/ratingSystem";
 
 const CommentForm = ({ albumId }) => {
-  const [commentText, setCommentText] = useState('');
+  const [commentText, setCommentText] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addComment, { error }] = useMutation(ADD_COMMENT);
@@ -24,7 +26,7 @@ const CommentForm = ({ albumId }) => {
         },
       });
 
-      setCommentText('');
+      setCommentText("");
     } catch (err) {
       console.error(err);
     }
@@ -33,7 +35,7 @@ const CommentForm = ({ albumId }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'commentText' && value.length <= 250) {
+    if (name === "commentText" && value.length <= 250) {
       setCommentText(value);
       setCharacterCount(value.length);
     }
@@ -47,12 +49,17 @@ const CommentForm = ({ albumId }) => {
         <>
           <p
             className={`m-0 ${
-              characterCount === 250 || error ? 'text-danger' : ''
+              characterCount === 250 || error ? "text-danger" : ""
             }`}
           >
             Character Count: {characterCount}/250
             {error && <span className="ml-2">{error.message}</span>}
           </p>
+
+          <div className="rateMusic">
+            <RatingSystem />
+          </div>
+
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
@@ -63,7 +70,7 @@ const CommentForm = ({ albumId }) => {
                 placeholder="Your thoughts..."
                 value={commentText}
                 className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                style={{ lineHeight: "1.5", resize: "vertical" }}
                 onChange={handleChange}
               ></textarea>
             </div>
@@ -77,7 +84,7 @@ const CommentForm = ({ albumId }) => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{' '}
+          You need to be logged in to share your thoughts. Please{" "}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
