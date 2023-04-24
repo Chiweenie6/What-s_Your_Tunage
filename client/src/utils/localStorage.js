@@ -1,4 +1,4 @@
-export const getSavedAlbums = () => {
+export const getSavedAlbumIds = () => {
     const savedAlbums = localStorage.getItem("saved_albums")
       ? JSON.parse(localStorage.getItem("saved_albums"))
       : [];
@@ -6,7 +6,7 @@ export const getSavedAlbums = () => {
     return savedAlbums;
   };
   
-  export const saveAlbums = (albumIdArr) => {
+  export const saveAlbumIds = (albumIdArr) => {
     if (albumIdArr.length) {
       localStorage.setItem("saved_albums", JSON.stringify(albumIdArr));
     } else {
@@ -14,7 +14,7 @@ export const getSavedAlbums = () => {
     }
   };
   
-  export const removeAlbum = (albumId) => {
+  export const removeAlbumIds = (albumId) => {
     const savedAlbums = localStorage.getItem("saved_albums")
       ? JSON.parse(localStorage.getItem("saved_albums"))
       : null;

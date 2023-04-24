@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // Import the `useParams()` hook
 import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
+
+import Auth from "../utils/auth";
+import { saveAlbumIds, getSavedAlbumIds } from "../utils/localStorage";
+import { SAVE_ALBUM } from "../utils/mutations";
 
 import CommentList from "../components/CommentList";
 import CommentForm from "../components/CommentForm";
-
 import { QUERY_SINGLE_ALBUM } from "../utils/queries";
 
 const SingleAlbum = () => {
@@ -19,6 +22,41 @@ const SingleAlbum = () => {
   });
 
   const album = data?.album || {};
+
+  // Create state for holding saved album ids
+  const { savedAlbumIds, setSavedAlbumIds } = useState(getSavedAlbumIds());
+
+  // useEffect hook to save "saveAlbumIds" to local storage
+  useEffect(() => {
+    return () => saveAlbumIds(savedAlbumIds);
+  });
+
+  // Use useMutation to utilize SAVE_ALBUM
+  const [saveAlbum] = useMutation(SAVE_ALBUM);
+
+  // Save album function
+  const handleSaveAlbum = async (albumId) => {
+    const albumToSave = album;
+
+    // Get Token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+    try {
+      const response = await saveAlbum({
+        variables: { input: albumToSave },
+      });
+
+      if (!response) {
+        throw new Error("🚫 Error 🚫");
+      }
+      // Save album to state if album is successfully saved
+      setSavedAlbumIds([...savedAlbumIds, albumToSave._id]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   if (loading) {
     return <div>🔃 Loading 🔃</div>;
@@ -52,13 +90,28 @@ const SingleAlbum = () => {
             <h4>{album.release}</h4>
           </div>
         </div>
+        {Auth.loggedIn() && (
+          <button
+            disabled={savedAlbumIds?.some(
+              (savedAlbumId) => savedAlbumId === album._id
+            )}
+            className="btn-block btn-info"
+            onClick={() => handleSaveAlbum(album._id)}
+          >
+            {savedAlbumIds?.some((savedAlbumId) => savedAlbumId === album._id)
+              ? "Already been saved! ✅"
+              : "💾 Save this Album!"}
+          </button>
+        )}
       </div>
 
-      <div style={{
+      <div
+        style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-        }}>
+        }}
+      >
         <div className="col-12 offset-2">
           <div className="my-5">
             <CommentList comments={album.comments} />
