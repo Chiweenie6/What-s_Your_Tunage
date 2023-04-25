@@ -47,7 +47,7 @@ const resolvers = {
 
       return { token, user };
     },
-    // Save Album from the User's profile
+    // Save Album to the User's profile
     saveAlbum: async (parent, { input }, context) => {
       if (context.user) {
         return User.findOneAndUpdate(
@@ -59,7 +59,7 @@ const resolvers = {
       //   Must be logged in in order to save album to profile
       throw new AuthenticationError("🚫 Must Be Logged In To Save Album 🚫");
     },
-    // Delete Album from the User's profile
+    // Remove Album from the User's profile
     removeAlbum: async (parent, { albumId }, context) => {
       if (context.user) {
         return User.findOneAndUpdate(

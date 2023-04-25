@@ -35,11 +35,14 @@ const SingleAlbum = () => {
   const [saveAlbum] = useMutation(SAVE_ALBUM);
 
   // Save album function
-  const handleSaveAlbum = async (albumId) => {
-    const albumToSave = album;
+  const handleSaveAlbum = async (_id) => {
+    const albumToSave = _id;
+
+    console.log(albumToSave);
 
     // Get Token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
+
     if (!token) {
       return false;
     }
@@ -89,20 +92,20 @@ const SingleAlbum = () => {
             <br></br>
             <h4>{album.release}</h4>
           </div>
+          {Auth.loggedIn() && (
+            <button
+              disabled={savedAlbumIds?.some(
+                (savedAlbumId) => savedAlbumId === album._id
+              )}
+              className="btn-block btn-info p-2"
+              onClick={() => handleSaveAlbum(album._id)}
+            >
+              {savedAlbumIds?.some((savedAlbumId) => savedAlbumId === album._id)
+                ? "Already been saved! ✅"
+                : "💾 Save this Album!"}
+            </button>
+          )}
         </div>
-        {Auth.loggedIn() && (
-          <button
-            disabled={savedAlbumIds?.some(
-              (savedAlbumId) => savedAlbumId === album._id
-            )}
-            className="btn-block btn-info"
-            onClick={() => handleSaveAlbum(album._id)}
-          >
-            {savedAlbumIds?.some((savedAlbumId) => savedAlbumId === album._id)
-              ? "Already been saved! ✅"
-              : "💾 Save this Album!"}
-          </button>
-        )}
       </div>
 
       <div

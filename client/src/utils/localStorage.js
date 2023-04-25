@@ -7,7 +7,7 @@ export const getSavedAlbumIds = () => {
   };
   
   export const saveAlbumIds = (albumIdArr) => {
-    if (albumIdArr.length) {
+    if (albumIdArr) {
       localStorage.setItem("saved_albums", JSON.stringify(albumIdArr));
     } else {
       localStorage.removeItem("saved_albums");
