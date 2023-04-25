@@ -60,7 +60,7 @@ const CommentForm = ({ albumId }) => {
             {error && <span className="ml-2">{error.message}</span>}
           </p>
 
-          <div className="rateMusic">
+          <div className="rateMusic p-5">
             <RatingSystem />
           </div>
 
