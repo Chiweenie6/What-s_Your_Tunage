@@ -99,6 +99,7 @@ const SingleAlbum = () => {
               )}
               className="btn-block btn-info p-2"
               onClick={() => handleSaveAlbum(album._id)}
+              style={{ cursor: "pointer" }}
             >
               {savedAlbumIds?.some((savedAlbumId) => savedAlbumId === album._id)
                 ? "Already been saved! ✅"
@@ -117,7 +118,7 @@ const SingleAlbum = () => {
       >
         <div className="col-12 offset-2">
           <div className="my-5">
-            <CommentList comments={album.comments} />
+            <CommentList comments={album.comments} singleAlbum={album} />
           </div>
           <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
             <CommentForm albumId={album._id} />

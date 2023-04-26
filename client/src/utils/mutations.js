@@ -36,6 +36,7 @@ export const ADD_COMMENT = gql`
       comments {
         _id
         commentText
+        commentAuthor
         createdAt
       }
     }
@@ -43,8 +44,8 @@ export const ADD_COMMENT = gql`
 `;
 
 export const REMOVE_COMMENT = gql`
-  mutation removeComment($albumId: ID!, $commentText: String!) {
-    removeComment(albumId: $albumId, commentText: $commentText) {
+  mutation removeComment($albumId: ID!, $commentId: ID!) {
+    removeComment(albumId: $albumId, commentId: $commentId) {
       _id
       title
       artist
@@ -54,6 +55,7 @@ export const REMOVE_COMMENT = gql`
       comments {
         _id
         commentText
+        commentAuthor
         createdAt
       }
     }
