@@ -54,7 +54,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addComment(albumId: ID!, commentText: String!): Album
     removeComment(albumId: ID!, commentId: ID!): Album
-    updateComment(albumId: ID!, commentId: ID!): Album
+    updateComment(albumId: ID!, commentId: ID!, commentText: String!): Album
     saveAlbum(input: AlbumInput): User
     removeAlbum(albumId: ID!): User
   }

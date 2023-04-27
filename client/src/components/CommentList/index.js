@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 import { REMOVE_COMMENT } from "../../utils/mutations";
 import { QUERY_SINGLE_ALBUM } from "../../utils/queries";
 import Auth from "../../utils/auth";
 
+import EditComment from "../EditComment";
+
 const CommentList = ({ comments, singleAlbum }) => {
+  // Using the REMOVE_COMMENT mutation to delete an album review and then update the album's reviews list
   const [removeComment, { error }] = useMutation(REMOVE_COMMENT, {
     onCompleted: (data) => console.log("🧌🧌🧌Mutation data", data),
     update(cache, { data: { removeComment } }) {
@@ -17,7 +21,6 @@ const CommentList = ({ comments, singleAlbum }) => {
       } catch (err) {
         console.log(err);
       }
-      console.log(removeComment);
     },
   });
 
@@ -41,7 +44,7 @@ const CommentList = ({ comments, singleAlbum }) => {
         className="p-5 display-inline-block"
         style={{ borderBottom: "10px double #1a1a1a" }}
       >
-        Comments
+        Reviews
       </h3>
       <div className="flex-row my-4">
         {comments &&
@@ -59,8 +62,27 @@ const CommentList = ({ comments, singleAlbum }) => {
                   </span>
                 </h5>
                 <br />
-                <div className="text-right">
-                  {Auth.loggedIn() && (
+
+                {Auth.loggedIn() && (
+                  <div className="text-right">
+                    <Link
+                      comment={comment}
+                      singleAlbumId={singleAlbum._id}
+                      commentText={comment.commentText}
+                      to={`/albums/${singleAlbum._id}/comments/${comment._id}`}
+                    >
+                      <button
+                        className="btn btn-sm btn-primary"
+                        style={{ cursor: "pointer" }}
+                      >
+                        🖊️ Edit Comment
+                      </button>
+                    </Link>
+                  </div>
+                )}
+
+                {Auth.loggedIn() && (
+                  <div className="text-right">
                     <button
                       className="btn btn-sm btn-danger"
                       onClick={() =>
@@ -68,18 +90,10 @@ const CommentList = ({ comments, singleAlbum }) => {
                       }
                       style={{ cursor: "pointer" }}
                     >
-                      🔥 Remove Comment
+                      🔥 Remove Review
                     </button>
-                  )}
-                  {Auth.loggedIn() && (
-                    <button
-                      className="btn btn-sm btn-primary"
-                      style={{ cursor: "pointer" }}
-                    >
-                      🖊️ Edit Comment
-                    </button>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}

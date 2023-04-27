@@ -62,6 +62,25 @@ export const REMOVE_COMMENT = gql`
   }
 `;
 
+export const UPDATE_COMMENT = gql`
+  mutation updateComment($albumId: ID!, $commentId: ID!, $commentText: String!) {
+    updateComment(albumId: $albumId, commentId: $commentId, commentText: $commentText) {
+      _id
+      title
+      artist
+      image
+      genre
+      release
+      comments {
+        _id
+        commentText
+        commentAuthor
+        createdAt
+      }
+    }
+  }
+`;
+
 export const SAVE_ALBUM = gql`
   mutation saveAlbum($input: AlbumInput) {
     saveAlbum(input: $input) {
