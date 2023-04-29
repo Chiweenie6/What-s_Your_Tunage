@@ -112,10 +112,11 @@ const resolvers = {
     ) => {
       if (context.user) {
         return Album.findOneAndUpdate(
-          { _id: albumId, _id: commentId },
+          { _id: albumId},
           {
             $set: {
               comments: {
+                _id: commentId, 
                 commentText: commentText,
                 commentAuthor: context.user.username,
               },
@@ -123,7 +124,7 @@ const resolvers = {
           },
           { new: true, runValidators: true }
         );
-        console.log(albumId);
+        
       }
       throw new AuthenticationError("You need to be logged in!");
     },

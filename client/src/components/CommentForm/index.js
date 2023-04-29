@@ -67,6 +67,7 @@ const CommentForm = ({ albumId }) => {
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
+            key={albumId}
           >
             <div className="col-12 col-lg-9">
               <textarea
@@ -88,7 +89,7 @@ const CommentForm = ({ albumId }) => {
         </>
       ) : (
         <p>
-          You need to be logged in to share your thoughts. Please{" "}
+          Must be logged in to write a review. Please{" "}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}

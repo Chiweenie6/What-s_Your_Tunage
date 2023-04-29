@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { UPDATE_COMMENT } from "../utils/mutations";
 import { QUERY_SINGLE_ALBUM } from "../utils/queries";
 import Auth from "../utils/auth";
 import RatingSystem from "../utils/ratingSystem";
 
-const EditComment = ({ comment, singleAlbumId, commentText }) => {
+const EditComment = ({ commentId, singleAlbumId, commentText }) => {
   //   const [commentText, setCommentText] = useState("");
-    // const [characterCount, setCharacterCount] = useState(0);
+  // const [characterCount, setCharacterCount] = useState(0);
   //   const [rating, setRating] = useState(0);
 
-  console.log(comment);
+ 
+
+  console.log(commentId);
   console.log(singleAlbumId);
 
   // Using the UPDATE_COMMENT mutation to edit an album review and then update the album's reviews list
@@ -56,19 +58,13 @@ const EditComment = ({ comment, singleAlbumId, commentText }) => {
 
       <div>
         <h3>{singleAlbumId}</h3>
-        <div key={comment} className="col-12 mb-3 pb-3">
-            <h5>Hey</h5>
+        <div key={commentId} className="col-12 mb-3 pb-3">
+          <h5>Hello</h5>
           <p className="card-body" style={{ fontSize: "2rem" }}>
             {commentText}
           </p>
         </div>
       </div>
-
-
-
-
-
-
 
       {/* <div className="flex-row my-4">
         <div key={comment._id} className="col-12 mb-3 pb-3">
@@ -85,56 +81,48 @@ const EditComment = ({ comment, singleAlbumId, commentText }) => {
             </h5>
             <br /> */}
 
-        
-            {Auth.loggedIn() ? (
-              <>
-
-                <div className="rateMusic p-5">
-                  <RatingSystem />
-                </div>
-                <form
-                  className="flex-row justify-center justify-space-between-md align-center"
-                  // onSubmit={handleUpdateComment}
-                >
-                  <div className="col-12 col-lg-9">
-                    <textarea
-                      name="commentText"
-                      placeholder={commentText}
-                      value={commentText}
-                      className="form-input w-100"
-                      style={{ lineHeight: "1.5", resize: "vertical" }}
-                    ></textarea>
-                  </div>
-
-                  <div className="text-right">
-                    <button
-                      className="btn btn-sm btn-primary"
-                      onClick={() =>
-                        handleUpdateComment(
-                          comment._id,
-                          singleAlbumId,
-                          commentText
-                        )
-                      }
-                      style={{ cursor: "pointer" }}
-                    >
-                      🖊️ Save Change
-                    </button>
-                  </div>
-                </form>
-              </>
-            ) : (
-              <p>
-                You need to be logged in to share your thoughts. Please{" "}
-                <Link to="/login">login</Link> or{" "}
-                <Link to="/signup">signup.</Link>
-              </p>
-            )}
+      {Auth.loggedIn() ? (
+        <>
+          <div className="rateMusic p-5 text-center">
+            <RatingSystem />
           </div>
-        
-        // </div>
-        // </div>
-        // </div>
+          <form
+            className="flex-row justify-center justify-space-between-md align-center"
+            onSubmit={handleUpdateComment}
+          >
+            <div className="col-12 col-lg-9">
+              <textarea
+                name="commentText"
+                defaultValue={commentText}
+                className="form-input w-100"
+                style={{ lineHeight: "1.5", resize: "vertical" }}
+              ></textarea>
+            </div>
+
+            <div className="text-right">
+              <button
+                className="btn btn-sm btn-primary"
+                onClick={() =>
+                  handleUpdateComment(commentId, singleAlbumId, commentText)
+                }
+                style={{ cursor: "pointer" }}
+              >
+                🖊️ Save Change
+              </button>
+            </div>
+          </form>
+        </>
+      ) : (
+        <p>
+          Must be logged in to edit review. Please{" "}
+          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+        </p>
+      )}
+    </div>
+
+    // </div>
+    // </div>
+    // </div>
   );
 };
 

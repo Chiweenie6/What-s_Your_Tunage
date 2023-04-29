@@ -10,7 +10,7 @@ const RatingSystem = () => {
       {[...Array(6)].map((icon, i) => {
         const ratingValue = i + 1;
         return (
-          <label>
+          <label key={ratingValue}>
             <input
               type="radio"
               style={{opacity: "0"}}

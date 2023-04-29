@@ -8,7 +8,33 @@ import Auth from "../../utils/auth";
 
 import EditComment from "../EditComment";
 
+
 const CommentList = ({ comments, singleAlbum }) => {
+
+  // Toggle hide/show EditComment
+const [toggle, setToggle] = useState(true);
+const showEditComment = (id) => {
+  if (id) {
+  setToggle(!toggle);
+  }
+};
+
+
+
+
+
+const [formState, setFormState] = useState({
+  commentId: "",
+  commentText: "",
+  commentAuthor: "",
+  createdAt: "",
+});
+
+
+
+
+
+
   // Using the REMOVE_COMMENT mutation to delete an album review and then update the album's reviews list
   const [removeComment, { error }] = useMutation(REMOVE_COMMENT, {
     onCompleted: (data) => console.log("🧌🧌🧌Mutation data", data),
@@ -34,12 +60,15 @@ const CommentList = ({ comments, singleAlbum }) => {
     }
   };
 
-  if (!comments.length) {
-    return <h3 style={{ color: "orange" }}>No Comments Yet</h3>;
-  }
+  // if (!comments) {
+  //   return <h3 style={{ color: "orange" }}>No Comments Yet</h3>;
+  // }
+
+        
 
   return (
     <>
+
       <h3
         className="p-5 display-inline-block"
         style={{ borderBottom: "10px double #1a1a1a" }}
@@ -48,7 +77,7 @@ const CommentList = ({ comments, singleAlbum }) => {
       </h3>
       <div className="flex-row my-4">
         {comments &&
-          comments.map((comment) => (
+        comments.map((comment) => (
             <div key={comment._id} className="col-12 mb-3 pb-3">
               <div className="p-3 bg-dark text-light">
                 <p className="card-body" style={{ fontSize: "2rem" }}>
@@ -65,22 +94,28 @@ const CommentList = ({ comments, singleAlbum }) => {
 
                 {Auth.loggedIn() && (
                   <div className="text-right">
-                    <Link
-                      comment={comment}
-                      singleAlbumId={singleAlbum._id}
-                      commentText={comment.commentText}
+                    {/* <Link
                       to={`/albums/${singleAlbum._id}/comments/${comment._id}`}
-                    >
+                      state={{
+                        commentId: comment._id
+                    }}
+                    > */}
+                      
                       <button
-                        className="btn btn-sm btn-primary"
+                        className="btn btn-sm btn-primary text-right"
                         style={{ cursor: "pointer" }}
+                        onClick={showEditComment}
                       >
-                        🖊️ Edit Comment
+                        🖊️ Edit Review
                       </button>
-                    </Link>
+                      {toggle ?
+                      <></>
+                      :
+                      <EditComment singleAlbumId={singleAlbum._id} commentId={comment._id} commentText={comment.commentText}/>
+                      }
+                    {/* </Link> */}
                   </div>
                 )}
-
                 {Auth.loggedIn() && (
                   <div className="text-right">
                     <button
@@ -104,5 +139,6 @@ const CommentList = ({ comments, singleAlbum }) => {
     </>
   );
 };
+
 
 export default CommentList;
