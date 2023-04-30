@@ -1,17 +1,49 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 
 import { REMOVE_COMMENT } from "../../utils/mutations";
-import { QUERY_SINGLE_ALBUM } from "../../utils/queries";
+import { QUERY_SINGLE_ALBUM, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
 
 import EditComment from "../EditComment";
 
 
-const CommentList = ({ comments, singleAlbum }) => {
+const CommentList = ({ comments = [], singleAlbum }) => {
+
+  const { data } = useQuery(QUERY_ME);
+  let userData = data?.me || {};
+
+  console.log(userData)
+
+//  const [...comment] = comments;
+
+
+//  const [userComments, setUserComments] = useState([...comments]);
+
+// console.log(userComments);
 
   // Toggle hide/show EditComment
+// const [toggle, setToggle] = useState(true);
+// const showEditComment = (id) => {
+//   const updateComment = comments.map(comment => {
+//   if (id === comment._id) {
+//   return setToggle(!toggle);
+//   } else {
+//     return comment;
+//   }
+  
+// });
+// setToggle(updateComment);
+// console.log(id);
+// }
+
+
+
+
+
+
+
 const [toggle, setToggle] = useState(true);
 const showEditComment = (id) => {
   if (id) {
@@ -23,12 +55,31 @@ const showEditComment = (id) => {
 
 
 
-const [formState, setFormState] = useState({
-  commentId: "",
-  commentText: "",
-  commentAuthor: "",
-  createdAt: "",
-});
+
+
+
+  console.log(comments);
+  console.log(singleAlbum);
+
+
+// const [userComments, setUserComments] = useState([...comments]);
+
+//   console.log(userComments);
+  
+
+
+
+// const handleComplete = (id) => {
+//   const updatedComments = userComments.map(comment => {
+//     if (comment._id === id) {
+//       return {...comment, completed: true}
+//     } else {
+//       return comment;
+//     }
+//   });
+//   setUserComments(updatedComments);
+// }
+
 
 
 
@@ -60,27 +111,39 @@ const [formState, setFormState] = useState({
     }
   };
 
-  // if (!comments) {
-  //   return <h3 style={{ color: "orange" }}>No Comments Yet</h3>;
-  // }
+  if (!comments.length) {
+    return <h3 style={{ color: "orange" }}>No Comments Yet</h3>;
+  }
 
+  function commentEdit({id}) {
+    const commentEdit = comments.map(comment => {
+      if (comment._id === id) {
+        return <EditComment key={comment._id} comment={comment} singleAlbumId={singleAlbum._id} commentId={comment._id} commentText={comment.commentText}/>;
+      } else {
+        return comment;
+      }
+    });
+  }
+
+  // const comment = comments.find(comment => comment._id === id);
         
 
   return (
     <>
-
-      <h3
+    <h3
         className="p-5 display-inline-block"
         style={{ borderBottom: "10px double #1a1a1a" }}
       >
         Reviews
       </h3>
+
       <div className="flex-row my-4">
         {comments &&
         comments.map((comment) => (
             <div key={comment._id} className="col-12 mb-3 pb-3">
               <div className="p-3 bg-dark text-light">
-                <p className="card-body" style={{ fontSize: "2rem" }}>
+                <p className="card-body" style={{ fontSize: "2rem" }}
+                >
                   {comment.commentText}
                 </p>
                 <h5 className="card-header">
@@ -92,31 +155,31 @@ const [formState, setFormState] = useState({
                 </h5>
                 <br />
 
-                {Auth.loggedIn() && (
+                {Auth.loggedIn() && (Auth.getProfile().data.username === comment.commentAuthor) && (
                   <div className="text-right">
-                    {/* <Link
-                      to={`/albums/${singleAlbum._id}/comments/${comment._id}`}
-                      state={{
-                        commentId: comment._id
-                    }}
-                    > */}
-                      
+                    
                       <button
+                      type="submit"
                         className="btn btn-sm btn-primary text-right"
                         style={{ cursor: "pointer" }}
-                        onClick={showEditComment}
+                        onClick={() => {showEditComment(comment._id)}}
+                        
+                        
                       >
                         🖊️ Edit Review
                       </button>
                       {toggle ?
                       <></>
                       :
-                      <EditComment singleAlbumId={singleAlbum._id} commentId={comment._id} commentText={comment.commentText}/>
+
+                      
+                        <EditComment key={comment._id} commentToChange={comment} singleAlbumId={singleAlbum._id} commentId={comment._id} commentText={comment.commentText}/>
+
                       }
-                    {/* </Link> */}
+              
                   </div>
                 )}
-                {Auth.loggedIn() && (
+                {Auth.loggedIn() && (Auth.getProfile().data.username === comment.commentAuthor) && (
                   <div className="text-right">
                     <button
                       className="btn btn-sm btn-danger"

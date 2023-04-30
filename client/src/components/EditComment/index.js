@@ -11,23 +11,23 @@ const EditComment = ({ singleAlbumId, commentId, commentText }) => {
   // const [commentText, setCommentText] = useState([]);
   //   const [rating, setRating] = useState(0);
 
-  const [reviewInfo, setReviewInfo] = useState({
+  const [comment, setComment] = useState({
     albumId: singleAlbumId,
     commentId: commentId,
     commentText: commentText,
   });
 
   const handleCommentTextChange = (e) => {
-    setReviewInfo({
-      ...reviewInfo,
+    setComment({
+      ...comment,
       commentText: e.target.value,
     });
     console.log(commentText);
     console.log(e.target.value);
   };
 
-  console.log(reviewInfo);
-  console.log(reviewInfo.commentText);
+  console.log(comment);
+  console.log(comment.commentText);
 
   // Using the UPDATE_COMMENT mutation to edit an album review and then update the album's reviews list
   const [updateComment, { error }] = useMutation(UPDATE_COMMENT, {
@@ -45,28 +45,28 @@ const EditComment = ({ singleAlbumId, commentId, commentText }) => {
     },
   });
 
-  console.log(updateComment);
-
   const handleUpdateComment = async () => {
     try {
       const { data } = await updateComment({
         variables: {
-          commentId: reviewInfo.commentId,
-          albumId: reviewInfo.albumId,
-          commentText: reviewInfo.commentText,
+          commentId: comment.commentId,
+          albumId: comment.albumId,
+          commentText: comment.commentText,
         },
       });
-      console.log(data.comment._id);
-      console.log(reviewInfo.commentId);
-      console.log(reviewInfo.albumId);
-      console.log(reviewInfo.commentText);
+      return;
+
+      // console.log(data.comment._id);
+      // console.log(comment.commentId);
+      // console.log(comment.albumId);
+      // console.log(comment.commentText);
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div key={reviewInfo.id}>
+    <div key={comment.commentId}>
       <h4 className="text-center" style={{ color: "orange" }}>
         Edit Review
       </h4>
@@ -86,7 +86,7 @@ const EditComment = ({ singleAlbumId, commentId, commentText }) => {
             <div className="col-12 col-lg-9">
               <textarea
                 name="reviewText"
-                value={reviewInfo.commentText}
+                value={comment.commentText}
                 className="form-input w-100"
                 style={{ lineHeight: "1.5", resize: "vertical" }}
                 onChange={handleCommentTextChange}
@@ -97,7 +97,7 @@ const EditComment = ({ singleAlbumId, commentId, commentText }) => {
               <button
                 type="submit"
                 className="btn btn-sm btn-primary"
-                onClick={() => handleUpdateComment(reviewInfo)}
+                onClick={() => handleUpdateComment(comment)}
                 style={{ cursor: "pointer" }}
               >
                 🖊️ Save Change

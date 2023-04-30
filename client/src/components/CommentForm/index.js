@@ -72,7 +72,7 @@ const CommentForm = ({ albumId }) => {
             <div className="col-12 col-lg-9">
               <textarea
                 name="commentText"
-                placeholder="Your thoughts..."
+                placeholder="Your review..."
                 value={commentText}
                 className="form-input w-100"
                 style={{ lineHeight: "1.5", resize: "vertical" }}
