@@ -23,6 +23,8 @@ const SingleAlbum = () => {
 
   const album = data?.album || {};
 
+  console.log(album);
+
   // Create state for holding saved album ids
   const { savedAlbumIds, setSavedAlbumIds } = useState(getSavedAlbumIds());
 
@@ -35,8 +37,8 @@ const SingleAlbum = () => {
   const [saveAlbum] = useMutation(SAVE_ALBUM);
 
   // Save album function
-  const handleSaveAlbum = async (_id) => {
-    const albumToSave = _id;
+  const handleSaveAlbum = async (album) => {
+    const albumToSave = album;
 
     console.log(albumToSave);
 
