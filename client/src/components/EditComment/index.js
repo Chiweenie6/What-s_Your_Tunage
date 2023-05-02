@@ -52,7 +52,7 @@ const EditComment = ({ singleAlbumId, commentId, commentText, onUpdate }) => {
           <textarea
             value={editedText}
             onChange={handleChange}
-            style={{ lineHeight: "1.5", resize: "vertical" }}
+            style={{ lineHeight: "2", resize: "vertical", width: "60%" }}
           />
           <button
             onClick={handleSave}
@@ -114,6 +114,10 @@ const EditComment = ({ singleAlbumId, commentId, commentText, onUpdate }) => {
 //   console.log(comment);
 //   console.log(comment.commentText);
 
+
+  
+
+
 //   // Using the UPDATE_COMMENT mutation to edit an album review and then update the album's reviews list
 //   const [updateComment, { error }] = useMutation(UPDATE_COMMENT, {
 //     onCompleted: (data) => console.log("👺👺👺 Mutation data", data),
@@ -121,7 +125,10 @@ const EditComment = ({ singleAlbumId, commentId, commentText, onUpdate }) => {
 //       try {
 //         cache.writeQuery({
 //           query: QUERY_SINGLE_ALBUM,
-//           data: { album: updateComment },
+//           data: { album: {
+//             comments: updateComment
+//           }
+//         },
 //         });
 //       } catch (err) {
 //         console.log(err);
@@ -135,8 +142,8 @@ const EditComment = ({ singleAlbumId, commentId, commentText, onUpdate }) => {
 //       const { data } = await updateComment({
 //         variables: {
 //           commentId: comment.commentId,
-//           albumId: comment.albumId,
 //           commentText: comment.commentText,
+//           albumId: comment.albumId
 //         },
 //       });
 

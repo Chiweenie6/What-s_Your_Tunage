@@ -16,30 +16,15 @@ const CommentList = ({ comments = [], singleAlbum }) => {
     }
   };
 
+  // New attempt to update
+  const [commentText, setCommentText] = useState("YAY");
 
-
-
-
-
-// New attempt to update
-    const [commentText, setCommentText] = useState("Youwho");
-
-    const handleUpdate = (updatedText) => {
-      setCommentText (updatedText);
-    };
-  
-
-
-
-
-
-
-  
+  const handleUpdate = (updatedText) => {
+    setCommentText(updatedText);
+  };
 
   console.log(comments);
   console.log(singleAlbum);
-
-  
 
   // Using the REMOVE_COMMENT mutation to delete an album review and then update the album's reviews list
   const [removeComment, { error }] = useMutation(REMOVE_COMMENT, {
@@ -70,17 +55,12 @@ const CommentList = ({ comments = [], singleAlbum }) => {
     return <h3 style={{ color: "orange" }}>No Comments Yet</h3>;
   }
 
- 
   return (
     <>
-    <div>
+      {/* <div>
     <EditComment commentText={commentText} onUpdate={handleUpdate} />
-    </div>
+    </div> */}
 
-
-
-
-    
       <h3
         className="p-5 display-inline-block"
         style={{ borderBottom: "10px double #1a1a1a" }}
@@ -108,7 +88,7 @@ const CommentList = ({ comments = [], singleAlbum }) => {
                 {Auth.loggedIn() &&
                   Auth.getProfile().data.username === comment.commentAuthor && (
                     <div className="text-right">
-                      <button
+                      {/* <button
                         type="submit"
                         className="btn btn-sm btn-primary text-right"
                         style={{ cursor: "pointer" }}
@@ -129,7 +109,17 @@ const CommentList = ({ comments = [], singleAlbum }) => {
                           commentId={comment._id}
                           commentText={comment.commentText}
                         />
-                      )}
+                      )} */}
+
+                      <EditComment
+                        key={comment._id}
+                        // commentText={commentText}
+                        onUpdate={handleUpdate}
+                        commentToChange={comment}
+                        singleAlbumId={singleAlbum._id}
+                        commentId={comment._id}
+                        commentText={comment.commentText}
+                      />
                     </div>
                   )}
                 {Auth.loggedIn() &&
